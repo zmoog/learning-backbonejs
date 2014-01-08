@@ -1,0 +1,23 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "authors": [
+    "Maurizio Branca <maurizio.branca@gmail.com>"
+  ],
+  "description": "Todo App",
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2"
+  }
+}

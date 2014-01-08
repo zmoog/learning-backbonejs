@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+	<div id="todo">
+    	<input type='checkbox' />
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script>
+
+
+	var View = Backbone.View.extend({
+
+    	el: '#todo',
+
+	    // bind to DOM event using events property
+	    events: {
+	        'click [type="checkbox"]': 'clicked',
+	    },
+
+	    initialize: function (argument) {
+	    	// bind to DOM events using jQuery
+	    	
+	    },
+
+	    clicked: function(argument) {
+	    	console.log(argument);
+	    }
+
+});
+
+var view = new View();
+
+
+// ~~~~~
+
+	// var Todo = Backbone.Model.extend({
+	//   defaults: {
+	//     title: '',
+	//     completed: false
+	//   }
+	// });
+	
+	// var TodosCollection = Backbone.Collection.extend({
+	//   model: Todo
+	// });
+	
+	// var myTodo = new Todo({title:'Read the whole book', id: 2});
+	
+	// // pass array of models on collection instantiation
+	// var todos = new TodosCollection([myTodo]);
+	// console.log("Collection size: " + todos.length); // Collection size: 1
+
+// ~~~~~
+
+ //  	// Your code goes here
+ //  	var Todo = Backbone.Model.extend({
+ //  		defaults: {
+ //  			title: '',
+ //  			completed: false
+ //  		}
+ //  	});
+
+	// // We can then create our own concrete instance of a (Todo) model
+	// // with no values at all:
+	// var todo1 = new Todo();
+	// // Following logs: {}
+	// console.log(JSON.stringify(todo1));
+	
+	// // or with some arbitrary data:
+	// var todo2 = new Todo({
+	//   title: 'Check the attributes of both model instances in the console.',
+	//   completed: true
+	// });
+	
+	// // Following logs: {"title":"Check the attributes of both model instances in the console.","completed":true}
+	// console.log(JSON.stringify(todo2));  
+
+</script>
+</body>
+</html>
