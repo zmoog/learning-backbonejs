@@ -27,17 +27,67 @@
 
 	    initialize: function (argument) {
 	    	// bind to DOM events using jQuery
-	    	
+	    	this.$el.click(this.jqueryClicked);
+
+	    	// bind to API event
+	    	this.on('api:event', this.callback);
+
 	    },
 
-	    clicked: function(argument) {
-	    	console.log(argument);
+	    clicked: function(event) {
+	    	console.log("events handler for " + this.el.outerHTML);
+	    	this.trigger('api:event', event.type);
+	    },
+
+	    jqueryClicked: function(event) {
+	    	console.log('jQuery handler for ' + this.outerHTML);
+	    },
+
+	    callback: function(eventType) {
+	    	console.log('event type was ' + eventType);
 	    }
 
-});
+	});
 
-var view = new View();
+	var view = new View();
 
+
+	var TodoRouter = Backbone.Router.extend({
+		routes: {
+			'about': 'showAbout',
+			'todo/:id': 'getTodo',
+			'search/:query': 'searchTodos',
+			'search/:query/p:page': 'searchTodos',
+			'todos/:id/download/*documentPath' : 'downloadDocument',
+			'*other': 'defaultRoute',
+        	'optional(/:item)': 'optionalItem',
+        	'named/optional/(y:z)': 'namedOptionalItem'
+        	/* Router URLs also support optional parts via parentheses, without having
+           to use a regex.  */
+		},
+
+		showAbout: function() {
+			console.log('Showing the about message.')
+		},
+		getTodo: function(id) {
+			console.log("You are trying to reach todo " + id);
+		},
+		searchTodos: function(query, page) {
+			var page_number = page || 1;
+			console.log("Page number: " + page_number + " of the results for todos containing the word: " + query);
+		},
+		downloadDocument: function(id, path) {},
+		defaultRoute: function(other) {
+			console.log('Invalid. You attempted to reach:' + other);
+		}
+
+	});
+
+	/* Now that we have a router setup, we need to instantiate it */
+
+	var myTodoRouter = new TodoRouter();
+
+	Backbone.history.start();
 
 // ~~~~~
 
